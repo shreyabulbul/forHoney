@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Memories 💛</title>
+  <style>
+    body {
+      background: #fff8dc;
+      font-family: 'Segoe UI', sans-serif;
+      text-align: center;
+      padding: 40px;
+    }
+
+    h2 {
+      font-family: 'Pacifico', cursive;
+      color: #fbc02d;
+    }
+
+    .album {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 40px;
+    }
+    
+
+    .card {
+      width: 200px;
+      height: 260px;
+      perspective: 1000px;
+    }
+
+    .inner-card {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      position: relative;
+    }
+
+    .card-flipped .inner-card {
+      transform: rotateY(180deg);
+    }
+
+    .front, .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .front {
+      background-color: #ffecb3;
+      font-size: 1em;
+    }
+
+    .back {
+      background-color: #fff;
+      transform: rotateY(180deg);
+    }
+
+    .back img {
+      width: 100%;
+      height: 100%;
+      border-radius: 16px;
+      object-fit: cover;
+    }
+    .floating-hearts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  #birthday-message {
+  animation: fadeIn 2s ease-in-out;
+  }
+  @keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+  } 
+  .floating-hearts span {
+    position: absolute;
+    color: #f06292;
+    animation: float 6s ease-in infinite;
+    font-size: 24px;
+  }
+  @keyframes float {
+    0% { transform: translateY(100vh); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateY(-10vh); opacity: 0; }
+  }
+  </style>
+</head>
+<body>
+  <h2>Our Little Moments 📸</h2>
+  <div class="floating-hearts">
+    <span style="left: 10%; animation-delay: 0s;">❤️</span>
+    <span style="left: 30%; animation-delay: 1s;">💛</span>
+    <span style="left: 50%; animation-delay: 2s;">❤️</span>
+    <span style="left: 70%; animation-delay: 3s;">💛</span>
+    <span style="left: 90%; animation-delay: 4s;">❤️</span>
+  </div>
+  <div class="album">
+    <div class="card" onclick="toggleFlip(this)">
+      <div class="inner-card">
+        <div class="front">You☀️</div>
+        <div class="back"><img src="gifs/910b14fd-150e-4e84-9e5f-c76810c903d4.jpeg" alt="us"></div>
+      </div>
+    </div>
+    <div class="card" onclick="toggleFlip(this)">
+      <div class="inner-card">
+        <div class="front">Us together🌎</div>
+        <div class="back"><img src="gifs/f3e64c67-f91a-4987-821b-fe5eea9adce0.jpeg" alt="us2"></div>
+      </div>
+    </div>
+    <div class="card" onclick="toggleFlip(this)">
+      <div class="inner-card">
+        <div class="front">Me🐦</div>
+        <div class="back"><img src="gifs/WhatsApp Image 2025-04-21 at 03.32.25_1ef6a402.jpg" alt="us3"></div>
+      </div>
+    </div>
+    <!-- Add more cards as needed -->
+  </div>
+  <div id="birthday-message" style="display: none; margin-top: 40px;">
+    <h3 style="font-family: 'Pacifico', cursive; color: #ff4081; font-size: 2em;">
+      Happy Birthday, My Love! 🎉🎂💖
+    </h3>
+    <img class="gif" src="https://c.tenor.com/d-S5OXxZ198AAAAC/130718-dance.gif" alt="Sun gif" style="width: 150px; height: auto; margin-top: 20px;" />
+
+    <button id="toggle-audio" style="font-size: 18px; background: none; border: none; cursor: pointer;">
+        🎵 Pause Music
+    </button>
+      
+  </div>
+  
+
+  <script>
+  function toggleFlip(card) {
+    card.classList.toggle("card-flipped");
+
+    // Check if it's the "Us together" card (2nd in the album)
+    const allCards = document.querySelectorAll(".card");
+    const usTogetherCard = allCards[1];
+
+    if (card === usTogetherCard && card.classList.contains("card-flipped")) {
+      const msg = document.getElementById("birthday-message");
+      msg.style.display = "block";
+
+      const audio = document.getElementById("birthday-audio");
+      audio.play();
+    }
+  }
+
+  document.getElementById("toggle-audio").addEventListener("click", function () {
+    const audio = document.getElementById("birthday-audio");
+    const button = document.getElementById("toggle-audio");
+
+    if (audio.paused) {
+      audio.play();
+      button.innerHTML = "🎵";
+    } else {
+      audio.pause();
+      button.innerHTML = "▶️";
+    }
+  });
+</script>
+
+
+</script>
+  <audio id="birthday-audio">
+    <source src="gifs/Shania Twain - You're Still The One.mp3" type="audio/mpeg" />
+    Your browser does not support the audio element.
+  </audio>
+  
+</body>
+</html>
